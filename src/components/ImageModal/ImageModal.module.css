@@ -1,0 +1,76 @@
+.modalContent {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 800px;
+    max-height: 90vh;
+    background-color: #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    font-family: sans-serif;
+}
+
+.image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.content {
+    padding: 20px;
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.name {
+    font-weight: bold;
+    color: #111;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.meta {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.title {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.likes {
+    font-size: 1rem;
+    color: #444;
+}
+
+.downloadBtn {
+    margin-top: 16px;
+    padding: 10px 16px;
+    background-color: #e60023;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.downloadBtn:hover {
+    background-color: #cc001f;
+}

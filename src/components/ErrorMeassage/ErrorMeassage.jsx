@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from "./ErrorMeassage.module.css";
 
 export default function ErrorMessage({ message }) {
   return (
-    <p style={{ textAlign: 'center', color: 'red', marginTop: '20px' }}>
+    <p className={styles['error-massage']}>
       {message || 'Something went wrong. Please try again.'}
     </p>
   );

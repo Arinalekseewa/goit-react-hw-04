@@ -1,5 +1,4 @@
 import { useState } from 'react';
-//import styles from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
@@ -7,7 +6,7 @@ import ErrorMessage from "../ErrorMeassage/ErrorMeassage";
 import LoadMore from "../LoadMore/LoadMore";
 import ImageModal from "../ImageModal/ImageModal";
 
-const ACCESS_KEY = 'YOUR_UNSPLASH_ACCESS_KEY';
+const ACCESS_KEY = 'zT7iurgOs4_wWfKlD0Z4NaERRPNbOdVeoV2UmNzaHyA';
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -32,7 +31,9 @@ export default function App() {
       const data = await response.json();
       const newImages = data.results;
 
-      setImages(prev => pageNumber === 1 ? newImages : [...prev, ...newImages]);
+      setImages(prev =>
+        pageNumber === 1 ? newImages : [...prev, ...newImages]
+      );
     } catch (err) {
       setError(err.message);
     } finally {
@@ -54,12 +55,13 @@ export default function App() {
   };
 
   const openModal = (image) => {
-    setSelectedImage({
-      full: image.urls.full,
-      alt: image.alt_description,
-    });
-    setIsModalOpen(true);
-  };
+  setSelectedImage({
+    full: image.urls.full,
+    alt: image.alt_description,
+  });
+  setIsModalOpen(true);
+};
+
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -76,11 +78,17 @@ export default function App() {
         <>
           <ImageGallery images={images} onImageClick={openModal} />
           {isLoading && <Loader />}
-          {images.length > 0 && !isLoading && <LoadMore onClick={handleLoadMore} />}
+          {images.length > 0 && !isLoading && (
+            <LoadMore onClick={handleLoadMore} />
+          )}
         </>
       )}
 
-      <ImageModal isOpen={isModalOpen} onClose={closeModal} image={selectedImage} />
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        image={selectedImage}
+      />
     </div>
   );
 }

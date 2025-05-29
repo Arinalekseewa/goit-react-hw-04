@@ -4,8 +4,11 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    padding-bottom: 20px;
 }
 
 .form-input {
     padding: 4px 8px;
+    border-radius: 8px;
+    border: none;
 }
