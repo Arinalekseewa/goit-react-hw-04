@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
@@ -16,6 +16,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
 
   const fetchImages = async (searchQuery, pageNumber) => {
     setIsLoading(true);
@@ -55,18 +56,21 @@ export default function App() {
   };
 
   const openModal = (image) => {
-  setSelectedImage({
-    full: image.urls.full,
-    alt: image.alt_description,
-  });
+  setSelectedImage(image);
   setIsModalOpen(true);
 };
-
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
   };
+
+  useEffect(() => {
+    if (isModalOpen && modalRef.current) {
+      modalRef.current.focus();
+    }
+  }, [isModalOpen]);
+
 
   return (
     <div>
@@ -88,6 +92,7 @@ export default function App() {
         isOpen={isModalOpen}
         onClose={closeModal}
         image={selectedImage}
+        modalRef={modalRef}
       />
     </div>
   );

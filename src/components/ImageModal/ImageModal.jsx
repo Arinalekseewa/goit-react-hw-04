@@ -4,7 +4,7 @@ import styles from './ImageModal.module.css';
 
 Modal.setAppElement('#root');
 
-export default function ImageModal({ isOpen, onClose, image }) {
+export default function ImageModal({ isOpen, onClose, image, modalRef }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -13,7 +13,7 @@ export default function ImageModal({ isOpen, onClose, image }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  if (!image || !image.urls || !image.user) return null;
+  if (!isOpen || !image) return null;
 
   const {
     urls,
@@ -28,14 +28,11 @@ export default function ImageModal({ isOpen, onClose, image }) {
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      style={{
-        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
-        content: styles.modalContent
-      }}
       className={styles.modalContent}
+      overlayClassName={styles.modalOverlay}
       shouldCloseOnOverlayClick={true}
     >
-      <div>
+      <div ref={modalRef} tabIndex="-1" className={styles.modalInner}>
         <img
           src={urls.regular}
           alt={alt_description}
